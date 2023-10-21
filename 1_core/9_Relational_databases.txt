@@ -1,0 +1,63 @@
+
+Introduction to Relational Databases:
+Definition:
+In a relational database, information is organized into tables that model real-world entities, representing objects and events.
+
+Entities:
+Entities are collections of objects or events for which you want to record information.
+Example: In a retail system, entities might include customers, products, orders, and line items.
+
+Table Structure:
+Tables contain rows, and each row represents a single instance of an entity.
+Columns in a table define attributes or properties of the entity.
+All rows in a table have the same set of columns.
+
+Example:
+In a retail scenario, tables might include Customer, Product, Order, and Line Item.
+Each row in the Customer table represents a single customer with columns like FirstName, LastName, Email, etc.
+
+
+Relational Model Example:
+Representation:
+
+Tables: Customers, Products, Orders, Line Items.
+
+Data Organization:
+
+Each row in the Customer table holds data for a single customer.
+Similar organization for other tables, reflecting the relationships between entities.
+
+Columns and Data Types:
+Consistent Structure:
+
+All rows in a table have the same columns.
+Each column has a specific data type.
+Example Data Types:
+
+Email column in Customer table: Text data type.
+Price column in Product table: Decimal numeric data type.
+Quantity column in Order table: Integer numeric data type.
+OrderDate column in Order table: Date/Time data type.
+NULL Values:
+
+Columns may allow NULL values (empty or unknown) where appropriate.
+Example: MiddleName column in Customer table.
+
+
+Standard Datatypes and ANSI:
+Datatypes:
+
+Datatypes depend on the database system but follow ANSI standards.
+Supported by most database systems.
+Standard Datatypes:
+
+Defined by the American National Standards Institute (ANSI).
+Common types include text, numeric, date/time, etc.
+
+
+
+Conclusion:
+Understanding relational data is fundamental in database management. 
+Relational databases organize information logically, modeling entities and their attributes through tables. 
+Columns define the structure, each row represents an instance, and specific data types ensure consistency. 
+This standardized approach, following ANSI norms, enables effective storage and retrieval of structured data, forming the backbone of robust data management systems.

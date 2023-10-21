@@ -1,0 +1,64 @@
+### Explore Analytical Data Processing
+
+#### Overview:
+
+- **Nature of Analytical Data Processing:**
+  - Analytical data processing involves read-only (or read-mostly) systems that store extensive volumes of historical data or business metrics.
+  - Analytics can be based on snapshots of data at specific points in time or a series of snapshots.
+
+#### Common Architecture for Enterprise-Scale Analytics:
+
+1. **Operational Data ETL (Extract, Transform, Load):**
+   - Operational data is extracted, transformed, and loaded into a data lake for analysis.
+
+2. **Table Schema in Data Warehouse or Data Lakehouse:**
+   - Data is loaded into a schema of tables, often in a Spark-based data lakehouse or a data warehouse with a fully relational SQL engine.
+
+3. **OLAP Model (Online Analytical Processing):**
+   - Aggregated data may be loaded into an OLAP model or cube.
+   - Aggregated numeric values (measures) are calculated for intersections of dimensions from dimension tables (e.g., sales revenue by date, customer, and product).
+
+4. **Querying for Reports and Visualizations:**
+   - Data in the data lake, data warehouse, and analytical model can be queried to produce reports, visualizations, and dashboards.
+
+#### Components of Analytical Database Architecture:
+
+*Refer to the Diagram Showing Analytical Database Architecture:*
+- **1. Operational Data ETL:** Data extraction, transformation, and loading into a data lake.
+- **2. Table Schema:** Tables in a Spark-based data lakehouse or a data warehouse.
+- **3. OLAP Model (Cube):** Aggregated data storage optimized for analytical workloads.
+- **4. Reports and Visualizations:** Querying data for generating reports, visualizations, and dashboards.
+
+#### Data Storage Technologies:
+
+1. **Data Lakes:**
+   - Common in large-scale analytical processing scenarios.
+   - Suitable for collecting and analyzing a large volume of file-based data.
+
+2. **Data Warehouses:**
+   - Established method for storing data in a relational schema optimized for read operations.
+   - Primarily designed to support reporting and data visualization.
+
+3. **Data Lakehouses:**
+   - Innovative approach combining flexible and scalable storage of a data lake with relational querying semantics of a data warehouse.
+   - May involve some denormalization for faster query performance.
+
+#### OLAP Models:
+
+- **Definition:**
+  - An aggregated type of data storage optimized for analytical workloads.
+  - Enables drilling up/down to view aggregations at multiple hierarchical levels (e.g., total sales by region, city, or individual address).
+  - Pre-aggregated data allows for quick queries to return summaries.
+
+#### User Roles in Analytical Architecture:
+
+1. **Data Scientists:**
+   - Work directly with data files in a data lake to explore and model data.
+
+2. **Data Analysts:**
+   - Query tables directly in the data warehouse to produce complex reports and visualizations.
+
+3. **Business Users:**
+   - Consume pre-aggregated data in an analytical model through reports or dashboards.
+
+In conclusion, analytical data processing involves leveraging historical data for in-depth analysis. The architecture includes components like data lakes, data warehouses, and OLAP models, catering to various user roles with distinct requirements in the analytical workflow.

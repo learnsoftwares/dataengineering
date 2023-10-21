@@ -1,0 +1,54 @@
+### Explore Transactional Data Processing
+
+#### Overview:
+
+- **Definition:**
+  - Transactional Data Processing (OLTP) is a fundamental function of business computing, recording specific events that organizations want to track. 
+    3Transactions are discrete units of work, and the system handling them is known as an Online Transactional Processing (OLTP) system.
+
+#### Key Characteristics:
+
+1. **Nature of Transactions:**
+   - Transactions can be financial (e.g., money movement in banking) or part of retail systems (e.g., tracking payments for goods and services).
+   - Transactions are small, discrete units of work.
+
+   
+
+2. **Volume and Accessibility:**
+   - High-volume systems, often processing millions of transactions daily.
+   - Data needs to be accessible quickly.
+
+#### Online Transactional Processing (OLTP):
+
+- **Database System:**
+  - OLTP solutions rely on a database system optimized for both read and write operations to support transactional workloads.
+
+- **CRUD Operations:**
+  - Commonly involves CRUD operations (Create, Retrieve, Update, Delete) applied transactionally.
+  - Ensures the integrity of data stored in the database.
+
+#### ACID Semantics:
+
+- **Atomicity:**
+
+  - Each transaction is treated as a single unit, either succeeding completely or failing completely.
+  - Example: A fund transfer transaction must debit one account and credit another entirely.
+
+- **Consistency:**
+  - Transactions transition data from one valid state to another.
+  - Example: The completed fund transfer transaction must reflect the accurate transfer of funds between accounts.
+
+- **Isolation:**
+  - Concurrent transactions do not interfere with each other and must result in a consistent database state.
+  - Example: A balance-checking transaction during a fund transfer must return consistent results.
+
+- **Durability:**
+  - Once a transaction is committed, it remains committed.
+  - Example: After a fund transfer, the revised account balances persist even if the system is switched off.
+
+#### Use Cases:
+
+- OLTP systems support live applications, often referred to as Line of Business (LOB) applications.
+- Widely used for real-time processing of business data.
+
+In summary, Transactional Data Processing is a crucial aspect of business computing, ensuring the accurate recording and management of specific events. OLTP systems, with their emphasis on ACID semantics, provide the necessary infrastructure for high-volume, real-time processing of transactions in various business applications.

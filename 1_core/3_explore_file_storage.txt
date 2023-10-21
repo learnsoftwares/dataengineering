@@ -1,0 +1,206 @@
+### Explore File Storage
+
+#### Core Element of Computing:
+
+- Storing data in files is fundamental to computing systems.
+- Local storage on personal computers and removable media (USB drives) is common.
+- Most organizations centralize data files in shared file storage systems.
+- Central storage is increasingly hosted in the cloud for cost-effectiveness, security, and reliability.
+
+#### Factors Influencing File Format:
+
+1. **Type of Data:**
+   - Depends on whether the data is structured, semi-structured, or unstructured.
+
+2. **Applications and Services:**
+   - Influenced by the applications and services that will interact with the data.
+
+3. **Readability vs. Efficiency:**
+   - Consideration of whether data files need to be readable by humans or optimized for storage and processing efficiency.
+
+#### Common File Formats:
+
+1. **Delimited Text Files:**
+   - **Format:** Plain text with specific delimiters and row terminators.
+   - **Common Formats:** CSV, TSV, space-delimited, fixed-width.
+   - **Use Case:** Suitable for structured data accessed by various applications and services in a human-readable format.
+
+   *Example:*
+  
+   FirstName,LastName,Email
+   Joe,Jones,joe@litware.com
+   Samir,Nadoy,samir@northwind.com
+
+
+2. **JavaScript Object Notation (JSON):**
+   - **Format:** Hierarchical document schema.
+   - **Use Case:** Flexible format for both structured and semi-structured data.
+
+   *Example Json:*
+   
+   {
+     "customers": [
+       {
+         "firstName": "Joe",
+         "lastName": "Jones",
+         "contact": [
+           {"type": "home", "number": "555 123-1234"},
+           {"type": "email", "address": "joe@litware.com"}
+         ]
+       },
+       {
+         "firstName": "Samir",
+         "lastName": "Nadoy",
+         "contact": [{"type": "email", "address": "samir@northwind.com"}]
+       }
+     ]
+   }
+   
+
+3. **Extensible Markup Language (XML):**
+   - **Format:** Human-readable with tags defining elements and attributes.
+   - **Use Case:** Was popular, now less common, but still used in some systems.
+
+   *Example:xml*
+   
+   <Customers>
+     <Customer name="Joe" lastName="Jones">
+       <ContactDetails>
+         <Contact type="home" number="555 123-1234"/>
+         <Contact type="email" address="joe@litware.com"/>
+       </ContactDetails>
+     </Customer>
+     <Customer name="Samir" lastName="Nadoy">
+       <ContactDetails>
+         <Contact type="email" address="samir@northwind.com"/>
+       </ContactDetails>
+     </Customer>
+   </Customers>
+   ```
+
+4. **Binary Large Object (BLOB):**
+   - **Format:** All files stored as binary data.
+   - **Use Case:** Particularly for unstructured data like images, video, audio, and application-specific documents.
+
+   *Note:* Binary data is often referred to as BLOBs (Binary Large Objects).
+
+#### Optimized File Formats:
+
+- **Avro:**
+  - Row-based format created by Apache.
+  - Header describes data structure stored as JSON, good for compression.
+
+- **ORC (Optimized Row Columnar Format):**
+  - Organizes data into columns for optimized read and write operations.
+  - Developed by HortonWorks for Apache Hive.
+
+- **Parquet:**
+  - Columnar data format created by Cloudera and Twitter.
+  - Specialized in storing and processing nested data types efficiently.
+  - Supports efficient compression and encoding schemes.
+
+These optimized formats prioritize storage space and processing efficiency, making them suitable for specific data processing requirements.
+
+
+
+-----------------------------------------
+
+Avro:
+
+Serialization Format: Avro is a row-based serialization format.
+Schema Evolution: Avro supports schema evolution, meaning you can evolve your data schema over time without requiring modification to existing data.
+Compression: Avro supports compression, helping to reduce storage space.
+Use Cases: Avro is often used in scenarios where schema evolution is critical, and there is a need for a compact and fast serialization format.
+
+
+ORC (Optimized Row Columnar):
+
+Columnar Storage: ORC is a columnar storage format designed for Hadoop workloads.
+Compression: ORC provides advanced compression techniques, making it efficient in terms of storage space.
+Predicate Pushdown: ORC supports predicate pushdown, meaning that queries can skip unnecessary data when reading.
+Use Cases: ORC is commonly used in Apache Hive, a data warehouse infrastructure built on top of Hadoop. It's optimized for read-heavy workloads.
+
+Parquet:
+
+Columnar Storage: Similar to ORC, Parquet is a columnar storage format.
+Compression: Parquet supports various compression algorithms, providing flexibility in terms of balancing between compression ratios and query performance.
+Predicates and Projections: Parquet allows for predicate pushdown and column pruning, meaning that queries can be more efficiently executed by skipping unnecessary data.
+Use Cases: Parquet is widely used in the Apache Spark and Apache Arrow ecosystems. It's known for its performance and compatibility with various data processing frameworks.
+
+Considerations:
+
+If your use case involves evolving schemas frequently, Avro might be a good choice.
+For read-heavy workloads and compatibility with Hive, ORC could be preferred.
+Parquet is often chosen for its performance, compatibility with multiple big data processing frameworks, and the ability to balance compression and query performance effectively.
+
+
+
+
+
+
+------------------------------------------------
+
+Row based Serialization format
+
+
+A row-based serialization format refers to a method of organizing and storing data where the data for each individual row is serialized and stored together.
+In the context of databases and data storage, serialization is the process of converting data structures or objects into a format that can be easily stored, transmitted, or reconstructed.
+
+Here are key characteristics of row-based serialization:
+
+Storage by Rows:
+In row-based serialization, the data for each row of a table or dataset is stored sequentially. This means that all the values for the first row are serialized together, followed by the values for the second row, and so on.
+
+Structure Preservation:
+The format aims to preserve the structure of each individual row. This is in contrast to columnar storage formats where the values of a single column are stored together.
+
+Ease of Insertion and Update:
+Row-based storage is often conducive to easy insertion and updates. When a new row is added or an existing row is updated, only the serialized data for that particular row needs to be modified.
+
+Simplicity for Transactional Processing:
+Row-based storage is well-suited for transactional processing and OLTP (Online Transaction Processing) systems. These systems typically involve a large number of small, frequent transactions that affect a small subset of rows.
+
+Schema Design:
+Changes to the schema (structure of the data) are generally more straightforward in row-based serialization. Adding or removing a column typically requires less effort than in columnar storage formats.
+
+Query Performance for Full Row Retrieval:
+Row-based serialization is efficient when the application needs to retrieve entire rows of data. This is often the case in transactional systems where operations involve working with complete records.
+
+Examples:
+Common row-based serialization formats include JSON and XML. In databases, row-oriented databases like MySQL, PostgreSQL, and traditional relational databases typically use row-based storage.
+
+---------------------------------------------------
+columnar storage format 
+
+A columnar storage format is a method of organizing and storing data in a database or data store where the values of each column are stored together, as opposed to storing entire rows of data together. This approach is in contrast to row-based storage, where each row is stored sequentially. In columnar storage, the data for a specific column is stored as a separate structure, often with compression techniques applied to improve storage efficiency.
+
+Here are key characteristics of columnar storage formats:
+
+1. **Storage by Columns:**
+   - In columnar storage, the values of each column are stored consecutively. This means that all the values for the first column are stored together, followed by the values for the second column, and so on.
+
+2. **Compression:**
+   - Columnar storage formats often leverage compression techniques to reduce storage space. This is because values in a column tend to have similar data types, which makes them more amenable to compression compared to the diverse data types found in a row.
+
+3. **Column Pruning:**
+   - One of the advantages of columnar storage is the ability to perform "column pruning," which means that only the columns needed for a particular query are read, rather than reading the entire row. This can significantly improve query performance, especially in analytical and reporting scenarios.
+
+4. **Aggregation Efficiency:**
+   - Columnar storage is particularly efficient for analytical queries that involve aggregations, as it allows the database engine to read and process only the relevant columns.
+
+5. **Analytics and Data Warehousing:**
+   - Columnar storage is well-suited for data warehousing and analytics where queries involve scanning and aggregating large volumes of data. It is commonly used in big data processing frameworks and data warehouses.
+
+6. **Schema Evolution Challenges:**
+   - While columnar storage excels in certain scenarios, it may present challenges when there are frequent changes to the schema, such as adding or removing columns. This is because each column is stored separately, and schema changes may require more complex operations.
+
+7. **Examples:**
+   - Popular columnar storage formats include Apache Parquet, Apache ORC (Optimized Row Columnar), and Google's Dremel format. These formats are commonly used in distributed data processing frameworks like Apache Spark and Hadoop.
+
+Columnar storage is well-suited for scenarios where analytical queries are prevalent, and the system needs to handle large-scale data processing efficiently. The choice between row-based and columnar storage depends on the specific requirements of the application or use case.
+
+
+---------------------------------------------
+
+
+

@@ -1,0 +1,55 @@
+Explore Databases
+
+Central System for Data Storage and Querying:
+
+Definition:
+A database serves as a central system for storing and querying data. In professional data contexts, it refers to a dedicated system for managing data records, distinct from a simple file system.
+
+
+Relational Databases:
+
+Characteristics:
+Structured Data: Commonly used for storing and querying structured data.
+Table Structure: Data is organized into tables representing entities like customers, products, or sales orders.
+Primary Keys: Each entity instance has a unique primary key for identification.
+Normalization: Ensures elimination of duplicate data values by using keys for referencing entities across tables.
+
+SQL: Managed and queried using Structured Query Language (SQL), standardized across database systems.
+
+---------------------------------------------------------------------
+
+Non-Relational Databases (NoSQL):
+
+Characteristics:
+No Fixed Schema: Non-relational databases don't strictly adhere to a relational schema.
+
+Types:
+Key-Value Databases: Each record consists of a unique key and an associated value.
+Document Databases: Values are JSON documents optimized for parsing and querying.
+Column Family Databases: Store tabular data with columns grouped into families.
+Graph Databases: Store entities as nodes with links defining relationships.
+
+NoSQL Term: Although some support SQL variants, they are commonly referred to as NoSQL databases.
+
+Common Non-Relational Database Types:
+
+Key-Value Databases:
+Each record has a unique key and an associated value in any format.
+
+Document Databases:
+A form of key-value database where values are JSON documents.
+
+Column Family Databases:
+Store tabular data with columns divided into logical groups (column families).
+
+Graph Databases:
+Entities represented as nodes with links defining relationships.
+
+In summary, databases play a crucial role in data management, and the choice between relational and non-relational databases depends on the nature of the data and the specific requirements of the application.
+Relational databases are well-suited for structured data, while NoSQL databases offer flexibility for various data structures and types.
+
+----------------------------------------------------------------------
+
+
+
+
