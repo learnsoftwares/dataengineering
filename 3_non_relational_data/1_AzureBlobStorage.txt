@@ -1,0 +1,85 @@
+Azure Blob Storage Overview:
+
+Azure Blob Storage is a cloud-based service designed to store massive amounts of unstructured data efficiently. This data is stored as binary large objects, or blobs. These blobs can be read and written using the Azure Blob Storage API.
+
+ Key Concepts:
+
+1. Storage Account:
+   - All blobs are stored within an Azure Storage Account.
+   - The storage account acts as a unique namespace for your Azure Storage data.
+
+2. Containers:
+   - Blobs are stored in containers within a storage account.
+   - Containers provide a way to organize related blobs.
+   - Access to blobs within a container is controlled at the container level.
+
+3. Blob Hierarchy:
+   - Blobs within a container can be organized in a hierarchy of virtual folders, similar to a file system.
+   - Folders are purely virtual and do not have folder-level operations.
+
+ Types of Blobs:
+
+1. Block Blobs:
+   - Treated as a set of blocks, with each block having a variable size (up to 100 MB).
+   - Can contain up to 50,000 blocks, allowing a maximum size of over 4.7 TB.
+   - Suitable for discrete, large, binary objects that change infrequently.
+
+2. Page Blobs:
+   - Organized as a collection of fixed-size 512-byte pages.
+   - Optimized for random read and write operations.
+   - Commonly used for virtual disk storage for virtual machines.
+   - Can hold up to 8 TB of data.
+
+3. Append Blobs:
+   - Optimized to support append operations.
+   - Blocks can be added only to the end; updating or deleting existing blocks is not supported.
+   - Each block can vary in size, up to 4 MB.
+   - Maximum size is just over 195 GB.
+
+ Blob Access Tiers:
+
+Blob storage provides three access tiers to balance access latency and storage cost:
+
+1. Hot Tier (Default):
+   - For frequently accessed blobs.
+   - Stored on high-performance media.
+
+2. Cool Tier:
+   - For data accessed infrequently.
+   - Incurs reduced storage charges compared to the Hot tier.
+   - Suitable for blobs accessed frequently initially but less as time passes.
+
+3. Archive Tier:
+   - Lowest storage cost with increased latency.
+   - Intended for historical data required only rarely.
+   - Blobs in the Archive tier are stored in an offline state.
+   - Retrieving a blob from the Archive tier involves changing the access tier to Hot or Cool.
+
+ Blob Lifecycle Management:
+
+- Lifecycle Management Policies:
+  - Define rules to automatically move blobs between tiers based on age and access frequency.
+  - Policies can move a blob from Hot to Cool, then to the Archive tier.
+  - Useful for cost optimization by transitioning less frequently accessed data to lower-cost tiers or deleting outdated blobs.
+
+ Use Cases:
+
+- Hot Tier:
+  - Frequently accessed data.
+
+- Cool Tier:
+  - Infrequently accessed data with cost optimization.
+
+- Archive Tier:
+  - Historical data required rarely, with the lowest storage cost.
+
+ Considerations:
+
+- Access Latency:
+  - Hot and Cool tiers have lower latency, while the Archive tier has increased latency.
+  - Retrieving data from the Archive tier involves rehydration.
+
+- Lifecycle Management:
+  - Automates the transition of blobs between access tiers.
+
+Azure Blob Storage provides a scalable, cost-effective solution for storing unstructured data with the flexibility to manage data access, storage costs, and lifecycle policies based on specific business needs.
