@@ -1,0 +1,41 @@
+- **Normalization in Database Design:**
+  - Process to minimize data duplication and enforce data integrity.
+  - Involves separating entities into tables, discrete attributes into columns.
+  - Utilizes primary keys for unique entity identification and foreign keys to link related entities.
+
+- **Core Principles of Normalization:**
+  1. Separate each entity into its own table.
+  2. Separate each discrete attribute into its own column.
+  3. Uniquely identify each entity instance using a primary key.
+  4. Use foreign key columns to link related entities.
+
+- **Benefits of Normalization:**
+  - Removes duplication of data, enabling easier updates.
+  - Constrains values to appropriate data types.
+  - Provides granularity for efficient querying.
+  - Ensures referential integrity through primary and foreign keys.
+
+- **Referential Integrity and RDBMS:**
+  - Relational Database Management Systems (RDBMS) enforce referential integrity.
+  - Foreign keys ensure that values in related tables correspond to existing primary keys.
+  - Prevents, for example, orders for non-existent customers.
+
+- **Composite Keys:**
+  - Keys (primary or foreign) can be composite based on a unique combination of multiple columns.
+  - Example: LineItem table uses a composite key (OrderNo and ItemNo) to identify a line item.
+
+Normalization enhances database efficiency by organizing data into well-structured tables, reducing redundancy, and ensuring data consistency through relationships and key constraints. The process facilitates easier maintenance and querying of databases.
+
+---------------------------------
+
+- **Normalization Example - Unnormalized Table:**
+  - Illustration using a spreadsheet for tracking sales.
+  - Customer and product details duplicated for each item sold.
+  - Data combination in spreadsheet cells.
+
+- **Normalization Example - Normalized Tabular Schema:**
+  - Each entity (customer, product, sales order, line item) has its own table.
+  - Discrete attributes of entities stored in separate columns.
+  - Instances of entities uniquely identified by primary keys.
+  - Foreign keys used to establish relationships between entities.
+

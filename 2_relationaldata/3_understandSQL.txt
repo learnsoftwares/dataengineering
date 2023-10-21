@@ -1,0 +1,183 @@
+- SQL Overview:
+
+  - Definition:SQL stands for Structured Query Language.
+  - Purpose:Used to communicate with relational databases.
+  - Standardization:Originally standardized by ANSI in 1986 and ISO in 1987.
+  - Usage:Standard language for relational database management systems (RDBMS).
+  - Examples of RDBMS:Microsoft SQL Server, MySQL, PostgreSQL, MariaDB, Oracle.
+
+- SQL Statements:
+
+  - Used to perform tasks like updating data or retrieving data from a database.
+  - Common SQL statements: SELECT, INSERT, UPDATE, DELETE, CREATE, and DROP.
+
+- Dialects of SQL:
+  - SQL has variations or dialects specific to different database management systems.
+  - Examples: Transact-SQL (T-SQL) for Microsoft SQL Server, pgSQL for PostgreSQL, PL/SQL for Oracle.
+
+- Normalization Note:
+  - SQL supports schema design processes like normalization to minimize data duplication and enforce data integrity.
+  - Entities separated into tables, attributes into columns, and primary/foreign keys used.
+
+- SQL Statement Types:
+  - SQL statements categorized into three groups: DDL, DCL, and DML.
+    - DDL (Data Definition Language):CREATE, ALTER, DROP, RENAME.
+    - DCL (Data Control Language):GRANT, DENY, REVOKE.
+    - DML (Data Manipulation Language):SELECT, INSERT, UPDATE, DELETE.
+
+- DDL Statements:
+  - CREATE:Create a new object (table, view, etc.).
+  - ALTER:Modify the structure of an object.
+  - DROP:Remove an object from the database.
+  - RENAME:Rename an existing object.
+
+- DCL Statements:
+  - Used by administrators to manage access permissions.
+  - GRANT:Grant permission to perform specific actions.
+  - DENY:Deny permission to perform specific actions.
+  - REVOKE:Remove a previously granted permission.
+
+- DML Statements:
+  - Used to manipulate rows in tables.
+  - SELECT:Read rows from a table.
+  - INSERT:Insert new rows into a table.
+  - UPDATE:Modify data in existing rows.
+  - DELETE:Delete existing rows.
+
+
+
+----------------------------------------DDL Statements --------------------------------
+
+
+-- CREATE: Create a new table 'Employee'
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50)
+);
+
+-- ALTER: Add a new column 'Salary' to the 'Employee' table
+
+ALTER TABLE Employee
+ADD Salary DECIMAL(10, 2);
+
+-- DROP: Remove the 'Department' column from the 'Employee' table
+
+ALTER TABLE Employee
+DROP COLUMN Department;
+
+-- RENAME: Rename the 'Employee' table to 'Staff'
+
+EXEC sp_rename 'Employee', 'Staff';
+
+
+The CREATE TABLE statement is used to create a new table named 'Employee' with columns for employee ID, first name, last name, and department.
+The ALTER TABLE statement is used to modify the structure of the 'Employee' table by adding a new column 'Salary'.
+Another ALTER TABLE statement is used to remove the 'Department' column from the 'Employee' table.
+The sp_rename system stored procedure is used to rename the 'Employee' table to 'Staff'.
+
+These statements demonstrate the basic usage of DDL statements to define and modify the structure of database objects such as tables. 
+--------------------------------------DCL Statements--------------------------------
+
+
+-- Assume there is a 'Users' table with sensitive information
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    UserName VARCHAR(50),
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(15)
+);
+
+-- A user with administrative privileges grants SELECT permission on the 'Users' table to a regular user
+GRANT SELECT ON Users TO RegularUser;
+
+-- Another user with administrative privileges denies INSERT permission on the 'Users' table to a different user
+DENY INSERT ON Users TO RestrictedUser;
+
+-- Later, the admin realizes the denial was a mistake and revokes the previously denied permission
+REVOKE INSERT ON Users FROM RestrictedUser;
+
+
+
+The GRANT statement is used to grant SELECT permission on the 'Users' table to a user named 'RegularUser'. This allows 'RegularUser' to retrieve data from the 'Users' table.
+The DENY statement is used to deny INSERT permission on the 'Users' table to a user named 'RestrictedUser'. This prevents 'RestrictedUser' from inserting new rows into the 'Users' table.
+The REVOKE statement is used to revoke the previously denied INSERT permission from 'RestrictedUser'. This restores the ability for 'RestrictedUser' to insert data into the 'Users' table.
+
+
+
+
+
+-------------------------------Data Manipulation Language-----------------------------------------
+
+-- Assume there is a 'Products' table
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10, 2),
+    StockQuantity INT
+);
+
+-- INSERT: Add new products to the 'Products' table
+INSERT INTO Products (ProductID, ProductName, Price, StockQuantity)
+VALUES (1, 'Laptop', 999.99, 50),
+       (2, 'Smartphone', 499.99, 100),
+       (3, 'Headphones', 49.99, 200);
+
+-- SELECT: Retrieve information about products with a price less than 100
+SELECT ProductID, ProductName, Price
+FROM Products
+WHERE Price < 100;
+
+-- UPDATE: Adjust the price of 'Headphones' to 39.99
+UPDATE Products
+SET Price = 39.99
+WHERE ProductName = 'Headphones';
+
+-- DELETE: Remove products with a stock quantity less than 50
+DELETE FROM Products
+WHERE StockQuantity < 50;
+
+
+
+
+The INSERT INTO statement is used to add new rows (products) to the 'Products' table.
+The SELECT statement retrieves information about products with a price less than 100.
+The UPDATE statement modifies the price of the product named 'Headphones' to 39.99.
+The DELETE FROM statement removes products from the 'Products' table where the stock quantity is less than 50.
+
+
+
+
+- Example Queries:
+
+  - SELECT Example:
+    
+    SELECT FirstName, LastName, Address, City
+    FROM Customer
+    WHERE City = 'Seattle'
+    ORDER BY LastName;
+   
+  - UPDATE Example:
+    
+    UPDATE Customer
+    SET Address = '123 High St.'
+    WHERE ID = 1;
+   
+  - DELETE Example:
+    
+    DELETE FROM Product
+    WHERE ID = 162;
+   
+  - INSERT Example:
+    
+    INSERT INTO Product(ID, Name, Price)
+    VALUES (99, 'Drill', 4.99);
+   
+
+SQL provides a powerful and standardized way to interact with relational databases, allowing for the manipulation of data and management of database structures. 
+
+
+
+

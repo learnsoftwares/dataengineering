@@ -1,0 +1,42 @@
+- **Relational Database Modeling:**
+  - Model collections of real-world entities as tables.
+  - Entities can be objects and events, recorded in tables like customers, products, orders, and line items.
+  - Example: Retail system with tables for customers, products, orders, and line items.
+
+- **Table Structure:**
+  - Tables contain rows, and each row represents a single instance of an entity.
+  - In the retail scenario, customer table rows contain customer data, product table rows define products, order table rows represent orders, and line item table rows represent products in orders.
+
+- **Structured Data Format:**
+  - Relational tables are a structured data format.
+  - Each row in a table has the same columns.
+  - Not all columns need a value (can be empty or NULL), allowing flexibility.
+  - Example: MiddleName column in a customer table can be empty for customers with no middle name.
+
+- **Column Data Types:**
+  - Each column stores data of a specific datatype.
+  - Example datatypes: character-based (text) for emails, decimal numeric for prices, integer numeric for quantities, and date/time for order dates.
+
+- **Datatype Definition:**
+  - Datatypes are defined based on the data each column stores.
+  - Datatypes are specific to the database system in use.
+  - Standard datatypes defined by ANSI are commonly supported across database systems.
+
+- **Data Integrity Constraints:**
+  - Constraints ensure data integrity, e.g., restricting a Quantity column to integer values.
+  - Constraints help maintain consistency and accuracy in the stored data.
+
+- **Example of Relational Model:**
+  - Visual representation with tables for customers, products, orders, and line items.
+  - Each table captures specific information related to its entity.
+
+- **Use of NULL Values:**
+  - NULL values allow columns to be empty when data is unknown or not applicable.
+  - Example: MiddleName column may have NULL values for customers with no middle name.
+
+- **Dependence on Database System:**
+  - Available datatypes depend on the database system.
+  - ANSI standard datatypes are widely supported across databases.
+
+Relational databases provide a structured and organized approach to storing data, offering consistency and flexibility in modeling real-world entities. 
+The use of tables, rows, and columns allows for efficient querying and maintenance of data integrity.
