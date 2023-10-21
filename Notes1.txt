@@ -1,0 +1,118 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+  },
+   "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-08-01-preview",
+      "name": "sqlserver4665654",
+      "location": "UK South",
+      "properties": {
+        "administratorLogin": "sqladmin",
+        "administratorLoginPassword": "Azure@2022"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2021-08-01-preview",
+      "name": "[format('{0}/{1}', 'sqlserver4665654', 'templatedb')]",
+      "location": "UK South",
+      "sku": {
+        "name": "Standard",
+        "tier": "Standard"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', 'sqlserver4665654')]"
+      ]
+    }]}
+
+-----------------------------------------------------
+
+Lab - Using Azure PowerShell - Resources
+The following can be used as a reference to the prior chapter
+
+1. Below are the PowerShell commands
+
+$resourceGroupName = "app-grp"
+$location = "West US"
+$adminSqlLogin = "demoadmin"
+$password = "AzureSQL@123"
+$databaseName = "newdb"
+$serverName="demoserver4005001"
+ 
+$server = New-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $serverName -Location $location -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
+ 
+$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName -ServerName $serverName -DatabaseName $databaseName -RequestedServiceObjectiveName "S0"
+2. Below are the Azure CLI commands
+
+$resourceGroupName = "datagrp"
+$location = "Central US"
+$adminSqlLogin = "demoadmin"
+$password = "AzureSQL@123"
+$databaseName = "newdb1"
+$serverName="newdemoserver4005001"
+ 
+az sql server create --name $serverName --resource-group $resourceGroupName --location $location --admin-user $adminSqlLogin --admin-password $password
+ 
+az sql db create --resource-group $resourceGroupName --server $serverName --name $databaseName --service-objective S0
+
+
+----------------------------------------------------
+
+
+Lab - Azure Database for MySQL - Resources
+The following can be used as a reference to the prior chapter
+
+-- 1. Use the following command to create a new database
+
+CREATE DATABASE appdb;
+
+-- 2. Use the following command to use the context of the database
+
+USE appdb;
+
+-- 3. Use the following command to create a new table
+
+CREATE TABLE Customer(
+	CustomerId VARCHAR(100),
+	CustomerName VARCHAR(100)
+);
+--4. Use the following commands to add data to the table
+
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C1','UserA');
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C2','UserB');
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C3','UserC');
+--5. Use the following command to fetch the rows from the table
+
+SELECT * from Customer;
+
+---------------------------------------------------
+
+Lab - Azure Database for PostgreSQL - Resources
+The following can be used as a reference to the prior chapter
+
+-- 1. Use the following command to create a new database
+
+CREATE DATABASE appdb;
+
+-- 2. Use the following command to create a new table
+
+CREATE TABLE Customer(
+	CustomerId VARCHAR(100),
+	CustomerName VARCHAR(100)
+);
+--3. Use the following commands to add data to the table
+
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C1','UserA');
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C2','UserB');
+INSERT INTO Customer(CustomerId,CustomerName) VALUES('C3','UserC');
+--4. Use the following command to fetch the rows from the table
+
+SELECT * from Customer;
+
+---------------------------------------------------
+

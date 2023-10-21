@@ -1,0 +1,250 @@
+T-sql - transact sql - sql server
+Pg sql - postgres sql
+p/l sql  - oracle
+
+------------------------------
+-- 1. Use the following command to create a new table
+
+CREATE TABLE Customer (
+    CustomerID varchar(100) NOT NULL,
+    CustomerName varchar(1000)
+);
+-- 2. Use the following commands to add data to the table
+
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST1','UserA');
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST2','UserB');
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST3','UserC');
+-- 3. Use the following command to fetch the rows from the table
+
+SELECT * FROM Customer;
+
+------------------------------
+CREATE TABLE Customer (
+    CustomerID varchar(100) NOT NULL,
+    CustomerName varchar(1000)
+);
+
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST1', 'USERA');
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST2', 'USERB');
+INSERT INTO Customer(CustomerID,CustomerName) VALUES ('CUST3', 'USERC');
+
+SELECT * FROM Customer;
+
+
+-- 1. Use the following command to update the name of a customer based on the customer id
+
+UPDATE Customer SET CustomerName='UserD' WHERE CustomerID='CUST1'
+
+-- 2. Use the following command to get the details of the customer based on the customer id
+
+SELECT * FROM Customer WHERE CustomerID='CUST1'
+
+-- 3. Use the following command to get the customer name based on the customer id
+
+SELECT CustomerName FROM Customer WHERE CustomerID='CUST1'
+
+-- 4. Use the following command to delete the record for the customer based on the customer id
+
+DELETE FROM Customer WHERE CustomerID='CUST1'
+
+-- 5. Use the following command to drop the customer table
+
+DROP TABLE Customer
+
+--------------------------Relationships-----------------
+
+-- 1. Use the following commands to create the tables
+
+CREATE TABLE Customer (
+    CustomerID varchar(100) NOT NULL,
+    CustomerName varchar(1000),    
+    PRIMARY KEY (CustomerID)
+);
+ 
+CREATE TABLE Course (
+    CourseID varchar(100) NOT NULL,
+    CourseName varchar(1000),
+    Price real,    
+    PRIMARY KEY (CourseID)
+);
+ 
+CREATE TABLE Orders (
+    OrderID varchar(100) NOT NULL,
+    CourseID varchar(100),
+    CustomerID varchar(100),    
+    Discountpercent int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
+
+-- 2. Use the following commands to add data to the tables
+
+INSERT INTO Customer(CustomerID,CustomerName) values ('CUST1','UserA');
+INSERT INTO Customer(CustomerID,CustomerName) values ('CUST2','UserB');
+INSERT INTO Customer(CustomerID,CustomerName) values ('CUST3','UserC');
+ 
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('COURSEID1','AZ-900',99.99);
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('COURSEID2','DP-900',100.99);
+INSERT INTO COURSE(CourseID,CourseName,Price) values ('COURSEID3','AZ-104',89.99);
+
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O1','COURSEID1','CUST1',90);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O2','COURSEID2','CUST2',50);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O3','COURSEID3','CUST3',60);
+ 
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O1','COURSEID1','CUST1',90);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O2','COURSEID2','CUST2',50);
+INSERT INTO Orders(OrderID,CourseID,CustomerID,Discountpercent) values ('O3','COURSEID3','CUST3',60);
+
+DELETE FROM Course where CourseID='COURSEID1'
+---------------------------------Where clause-------------------------
+
+
+
+WHERE Clause
+
+-- This can be used to extract records that match a particular filter
+
+
+
+SELECT * FROM SalesLT.SalesOrderDetail
+WHERE OrderQty > 5
+ 
+SELECT count(*) FROM SalesLT.SalesOrderDetail
+WHERE OrderQty > 5
+ 
+SELECT * FROM SalesLT.SalesOrderDetail
+WHERE OrderQty > 5 AND UnitPriceDiscount>0.00
+
+
+
+----------------------------Order By------------------------------
+
+
+ORDER BY Clause
+
+-- This can be used to sort the results in ascending or descending order.
+
+SELECT * FROM SalesLT.SalesOrderDetail
+ORDER BY OrderQty
+ 
+SELECT * FROM SalesLT.SalesOrderDetail
+ORDER BY OrderQty DESC
+
+
+----------------------------Group By-----------------------------
+GROUP BY Clause
+
+-- This can be used to groups rows that have same values.
+
+-- Here you can create summary-based rows
+
+SELECT * FROM SalesLT.Product
+GROUP BY Color
+ 
+SELECT Color FROM SalesLT.Product
+GROUP BY Color
+ 
+SELECT Color,COUNT(ProductID) 
+FROM SalesLT.Product
+GROUP BY Color
+ 
+SELECT Color,COUNT(ProductID) AS 'Count of Products'
+FROM SalesLT.Product
+GROUP BY Color
+
+--------------------------JOIN----------------------------
+
+JOIN Clause
+
+-- This can be used to combine data from multiple tables.
+
+SELECT cs.CourseName, od.Discountpercent
+FROM Course cs JOIN Orders od
+ON cs.CourseID=od.CourseID
+
+
+---------------------------Views---------------------------
+
+
+
+-- 1. Use the following command to create a new view
+
+CREATE VIEW CourseDiscount AS
+SELECT cs.CourseName, od.Discountpercent
+FROM Course cs JOIN Orders od
+ON cs.CourseID=od.CourseID
+
+-- 2. Use the following command to select data via the view
+
+SELECT * FROM CourseDiscount
+
+
+-- 3. Use the following command to create a new view
+
+CREATE VIEW CompanyInfo AS
+SELECT a.AddressType, c.CompanyName,c.FirstName
+FROM SalesLT.CustomerAddress AS a JOIN SalesLT.Customer c
+ON a.CustomerID=c.CustomerID
+
+
+-- 4. Use the following command to select data via the view
+
+SELECT * FROM CompanyInfo
+
+
+SELECT AddressType,Count(AddressType) as Count
+FROM CompanyInfo
+GROUP BY AddressType
+-- 5. Use the following command to delete the view
+
+DROP View CompanyInfo
+
+
+------------------------------Indexes-----------------------------
+
+
+
+-- 1. Use the following command to create a new table
+
+CREATE TABLE customers
+(
+CustomerId int,
+CustomerName varchar(1000),
+Age int
+)
+-- 2. Use the following commands to add data to the table
+
+INSERT INTO Customers(CustomerId,Customername,Age) VALUES (1,'userA',20)
+INSERT INTO Customers(CustomerId,Customername,Age) VALUES (2,'userB',30)
+INSERT INTO Customers(CustomerId,Customername,Age) VALUES (3,'userC',31)
+INSERT INTO Customers(CustomerId,Customername,Age) VALUES (4,'userD',26)
+INSERT INTO Customers(CustomerId,Customername,Age) VALUES (5,'userE',29)
+-- 3. Next enable the viewing of Actual Execution plans in SQL Server Management Studio. Execute the following command and see the relevant output
+
+SELECT * from Customers where CustomerId=3
+
+-- 4. Then go ahead and create a clustered index
+
+CREATE CLUSTERED INDEX IX_customers_customerid
+    ON dbo.Customers (CustomerId);    
+-- 5. Next execute the following command to see the effect of finding data using the customer name
+
+SELECT * FROM Customers where CustomerName='userD'
+
+-- 6. Next go ahead and create a non-clustered index
+
+CREATE NONCLUSTERED INDEX IX_customers_customername
+    ON dbo.Customers (CustomerName);    
+-- 7. Now force the use of the non-clustered index
+
+SELECT * FROM Customers WITH (INDEX(IX_customers_customername)) 
+WHERE CustomerName='userD' 
+
+
+
+------------------------------------------------------------------
+
+
+
