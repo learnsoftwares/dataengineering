@@ -1,0 +1,91 @@
+Lab - Azure Cosmos DB - Adding data - Resources
+
+
+1. The following items can be added to the container
+
+
+
+{
+"CustomerId":"C1",
+"CustomerName":"UserA"
+}
+{
+"CustomerId":"C2",
+"CustomerName":"UserB",
+"Orders":[
+{"OrderId":"O1","Course":"AZ-104","Price":100}
+]
+}
+
+
+{
+"CustomerId":"C3",
+"CustomerName":"UserC",
+"Orders":[
+{"OrderId":"O2","Course":"AZ-104","Price":50},
+{"OrderId":"O3","Course":"DP-900","Price":80}
+]
+}
+2. The following queries can be fired against the data in the container
+
+
+
+SELECT * FROM c.Orders
+
+
+SELECT o.OrderId, o.Course FROM o IN Course.Orders where o.Course='DP-900'
+
+
+--------------------------------------------
+
+
+
+
+1. The following items can be added to the document
+
+
+
+{
+"CustomerId":"C1",
+"CustomerName":"CUST1",
+"City":"Custcity1"
+}
+{
+"CustomerId":"C2",
+"CustomerName":"CUST2",
+"City":"Custcity2",
+"Orders":[
+{"OrderId":"O1","Course":"AZ-104","Price":100}
+]
+}
+
+
+{
+"CustomerId":"C3",
+"CustomerName":"CUST3",
+"City":"Custcity1",
+"Orders":[
+{"OrderId":"O2","Course":"AZ-104","Price":50},
+{"OrderId":"O3","Course":"DP-900","Price":80}
+]
+}
+---------------------------------------------------
+
+Lab - Azure Cosmos DB - Gremlin API - Resources
+
+
+// Adding the vertices
+
+g.addV('person').property('id','emp01').property('name','UserA').property('city','Chicago')
+g.addV('person').property('id','emp02').property('name','UserB').property('city','Chicago')
+g.addV('person').property('id','emp03').property('name','UserC').property('city','New York')
+g.addV('department').property('id','DepartmentA').property('city','Chicago')
+g.addV('department').property('id','DepartmentB').property('city','Chicago')
+
+// Adding the edges
+
+g.V('emp01').addE('Manages').to(g.V('emp02'))
+g.V('emp01').addE('Manages').to(g.V('emp03'))
+g.V('emp02').addE('In').to(g.V('DepartmentA'))
+g.V('emp03').addE('In').to(g.V('DepartmentB'))
+
